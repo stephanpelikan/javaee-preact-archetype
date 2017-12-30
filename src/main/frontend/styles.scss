@@ -1,0 +1,6 @@
+@import '~bulma/sass/utilities/_all.sass';
+@import '~bulma/sass/base/_all.sass';
+
+.title {
+  composes: title is-3 from 'bulma';
+}

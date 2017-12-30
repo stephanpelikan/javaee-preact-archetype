@@ -1,0 +1,25 @@
+{
+	"name": "carpool.customer-frontend",
+	"version": "0.0.1",
+	"description": "Carpool customer frontend",
+	"author": "Phactum GmbH",
+	"license": "MIT",
+	"dependencies": {
+		"bulma": "^0.6.1",
+		"sass-loader": "^6.0.6",
+		"node-sass": "^4.7.2",
+		"typings-for-css-modules-loader": "^1.7.0",
+		"css-loader": "^0.28.7",
+		"style-loader": "^0.19.1",
+		"ts-loader": "^3.2.0",
+		"preact": "^8.2.7",
+		"typescript": "^2.6.2",
+		"html-webpack-plugin": "latest",
+		"extract-text-webpack-plugin": "latest",
+		"compression-webpack-plugin": "latest",
+		"uglifyjs-webpack-plugin": "latest",
+		"source-map-loader": "latest",
+		"webpack": "^3.10.0"
+	},
+	"devDependencies": {}
+}
