@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
-@WebServlet(urlPatterns = { "/*" }, loadOnStartup = 1 /*, asyncSupported = true */)
+@WebServlet(urlPatterns = { "/*" }, loadOnStartup = 1/*, asyncSupported = true*/)
 public class RouteAwareHtmlServlet extends GzAwareServlet {
 
 	private static final long serialVersionUID = 1L;

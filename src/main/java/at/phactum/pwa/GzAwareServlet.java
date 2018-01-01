@@ -49,7 +49,6 @@ public abstract class GzAwareServlet extends HttpServlet {
 	private void deliverArtifactAsync(final String pathInfo, final InputStream inStream,
 			final HttpServletResponse resp, final AsyncContext context) throws ServletException, IOException {
 		
-		logger.warn("NIO");
 		final boolean contentLengthIsKnown = setResponseHeaders(pathInfo, resp);
 
 		final byte[] buffer = new byte[4096];
@@ -65,7 +64,6 @@ public abstract class GzAwareServlet extends HttpServlet {
 					int read = inStream.read(buffer);
 					
 					numberOfBytes[0] += read;
-					logger.warn("JUHU: " + read);
 					if (read < 0) {
 						storeContentLengthForUpcomingRequests(pathInfo, contentLengthIsKnown, numberOfBytes[0]);
 						
@@ -94,7 +92,6 @@ public abstract class GzAwareServlet extends HttpServlet {
 				final HttpServletResponse resp)
 						throws ServletException, IOException {
 			
-		logger.warn("BIO");
 		try {
 			
 			final boolean contentLengthIsKnown = setResponseHeaders(pathInfo, resp);
@@ -132,13 +129,13 @@ public abstract class GzAwareServlet extends HttpServlet {
 	
 
 	private void storeContentLengthForUpcomingRequests(final String pathInfo, final boolean contentLengthIsKnown,
-			final int contentLength) {
+			final long contentLength) {
 
 		if (contentLengthIsKnown) {
 			return;
 		}
 		
-		contentLengths.put(pathInfo, new Long(contentLength));
+		contentLengths.put(pathInfo, contentLength);
 		
 	}
 	

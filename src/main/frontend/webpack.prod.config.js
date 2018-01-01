@@ -31,22 +31,6 @@ let config = (env) => {
 		allChunks: true
 	}));
 	
-	/*
-	const HtmlCriticalPlugin = require("html-critical-webpack-plugin");
-	new HtmlCriticalPlugin({
-	   base: path.join(pah.resolve(__dirname), 'dist/')),
-	   src: 'index.html',
-	   dest: 'index.html',
-	   inline: true,
-	   minify: true,
-	   extract: true,
-	   width: 375,
-	   height: 565,
-	   penthouse: {
-	     blockJSRequests: false
-	});
-	 */
-	
 	return result;
 }
 

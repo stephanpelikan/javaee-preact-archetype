@@ -1,9 +1,9 @@
 {
-	"name": "carpool.customer-frontend",
+	"name": "pwa",
 	"version": "0.0.1",
-	"description": "Carpool customer frontend",
-	"author": "Phactum GmbH",
-	"license": "MIT",
+	"description": "pwa",
+	"author": "stephanpelikan",
+	"license": "Apache 2.0",
 	"dependencies": {
 		"bulma": "^0.6.1",
 		"sass-loader": "^6.0.6",

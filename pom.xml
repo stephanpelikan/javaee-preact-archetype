@@ -19,7 +19,7 @@
 			<version>7.0</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -31,7 +31,7 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.7</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -49,6 +49,9 @@
 					<configuration>
 						<source>1.8</source>
 						<target>1.8</target>
+						<compilerArgs>
+							<arg>-Xlint:deprecation</arg>
+						</compilerArgs>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -113,10 +116,14 @@
 
 	<profiles>
 		<profile>
-			<id>default</id>
+			<id>eclipse</id>
+
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 
 			<properties>
-				<outputDirectory>${project.build.directory}/m2e-wtp/web-resources</outputDirectory>
+				<outputDirectory>${project.build.directory}/generated-web-resources</outputDirectory>
 			</properties>
 
 			<build>
@@ -146,9 +153,21 @@
 										--display-error-details
 										--config ./webpack.dev.config.js
 									</arguments>
+									<outputdir>${outputDirectory}</outputdir>
 								</configuration>
 							</execution>
 						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<configuration>
+							<webResources>
+								<resource>
+									<directory>${project.build.directory}/generated-web-resources</directory>
+								</resource>
+							</webResources>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -198,4 +217,6 @@
 			</build>
 		</profile>
 	</profiles>
+
+
 </project>
