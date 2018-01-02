@@ -16,7 +16,9 @@ module.exports = (env) => {
 			new webpack.NoEmitOnErrorsPlugin(),
 			new HtmlWebpackPlugin({
 				template: './index.ejs',
-				minify: { collapseWhitespace: true }
+				minify: {
+					collapseWhitespace: true
+				}
 			})
 		],
 		resolve : {
