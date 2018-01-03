@@ -5,7 +5,7 @@ let root:Element;
 function init() {
     
     const Main = () => (
-                <h1  className={title}>Hello!</h1>
+                <h1  className={title}>{ (new Date()).toString() }!</h1>
             );
     
     render(<Main />, document.body, root);
