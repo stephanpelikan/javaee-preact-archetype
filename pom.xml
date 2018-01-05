@@ -3,8 +3,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>at.phactum.pwa</groupId>
-	<artifactId>pwa-archetype</artifactId>
-	<description>progressive webapp archetype</description>
+	<artifactId>pwa</artifactId>
+	<description>progressive webapp</description>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -42,6 +42,25 @@
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.0.0</version>
+					<configuration>
+						<filesets>
+							<fileset>
+								<directory>src/main/frontend/node_modules</directory>
+								<followSymlinks>false</followSymlinks>
+								<includes>
+									<include>**/*</include>
+								</includes>
+							</fileset>
+						</filesets>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-archetype-plugin</artifactId>
+					<version>3.0.0</version>
+				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
