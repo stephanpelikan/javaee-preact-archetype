@@ -30,15 +30,33 @@ You can change to this directory an run
 mvn install
 ```
 
-to install the Archetype locally. Afterwards you use the Archetype to build new projects:
+to install the Archetype locally.
+
+# Usage
+
+Once the Archetype is intalled you can use the Archetype to build new projects:
 
 ```sh
 mvn archetype:generate -DarchetypeGroupId=at.phactum.pwa -DarchetypeArtifactId=pwa-archetype -DarchetypeVersion=0.0.1-SNAPSHOT -DgroupId=test1.test2 -DartifactId=test3
 ```
+To build the project run
+
+```sh
+mvn install
+```
+
+for development build or
+
+```sh
+mvn install -P production,!eclipse
+```
+
+for fully optimized output.
 
 ### Todos
  - Client side caching
-
+ - This project is still under development and will be updated...
+ 
 License
 ----
 
