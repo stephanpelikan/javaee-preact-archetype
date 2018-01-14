@@ -11,6 +11,8 @@ let config = (env) => {
 	let result = common(env);
 
 	result.devtool = '#source-map';
+	
+	result.entry.app = './main-prod.tsx';
 
 	result.plugins.push(new CompressionPlugin({
 	}));
@@ -63,6 +65,16 @@ let config = (env) => {
 			whitelist: [ '*pfy*']
 		}
 	}));
+
+	/*
+new SWPrecache({
+				minify: true,
+				filename: 'sw.js',
+				dontCacheBustUrlsMatching: /./,
+				navigateFallback: 'index.html',
+				staticFileGlobsIgnorePatterns: [/\.map$/]
+})
+	 */
 	
 	return result;
 }

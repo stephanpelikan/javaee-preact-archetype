@@ -6,7 +6,11 @@ const AssetGraphPlugin = require('asset-graph-webpack-plugin');
 
 module.exports = (env) => {
 	return {
-		entry : [ './main.tsx' ],
+		entry : {
+			commons: [
+				'preact'
+			]
+		},
 		output : {
 			publicPath : '/',
 			path: env.outputDirectory,

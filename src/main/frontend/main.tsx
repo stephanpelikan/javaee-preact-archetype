@@ -1,15 +1,11 @@
 import { h, render } from "preact";
 import { title } from "./styles.scss";
+import Clock from "./clock";
 
-let root:Element;
-function init() {
-    
-    const Main = () => (
-                <h1  className={title}>{ (new Date()).toString() }!</h1>
-            );
-    
-    render(<Main />, document.body, root);
-
-}
-
-init();
+export default () => (
+    <div>
+        <h2 className={title}>{( new Date() ).toString()}!</h2>
+        <p>JUHU!!!</p>
+        <Clock />
+    </div>
+);

@@ -1,9 +1,13 @@
 {
 	"compilerOptions": {
 		"outDir": "./public/",
+		"experimentalDecorators": true,
 		"baseUrl": ".",
 		"target": "es5",
-		"lib": ["es2016", "dom"],
+		"lib": [
+			"es6",
+			"dom"
+		],
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"noImplicitAny": true,
@@ -11,15 +15,13 @@
 		"removeComments": true,
 		"sourceMap": true,
 		"jsx": "react",
-		"jsxFactory": "h"
+		"jsxFactory": "h",
+		"typeRoots": [
+			"node_modules/@types"
+		]
 	},
 	"include": [
 		"./**/*.tsx",
 		"./**/*.ts"
-	],
-	"exclude": [
-		"typings/browser.d.ts",
-		"typings/browser",
-		"node_modules"
 	]
 }
