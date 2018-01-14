@@ -23,8 +23,16 @@ let config = (env) => {
 
 	result.plugins.push(new webpack.optimize.UglifyJsPlugin({
 		sourceMap: true,
-		compress : {
-			warnings : false
+		compress: {
+			unused: 1,
+			warnings: 0,
+			comparisons: 1,
+			conditionals: 1,
+			negate_iife: 0, // <- for `LazyParseWebpackPlugin()`
+			dead_code: 1,
+			if_return: 1,
+			join_vars: 1,
+			evaluate: 1
 		},
 		mangle : true,
 		output: {
@@ -38,20 +46,10 @@ let config = (env) => {
 	}));
 	
 	/*
-	result.plugins.push(new OptimizeCssAssetsPlugin({
-	    cssProcessor: require('cssnano'),
-	    cssProcessorOptions: {
-	    	safe: true,
-	    	map: {
-	    		inline: false
-	    	},
-	    	discardComments: {
-	    		removeAll: true
-	    	}
-	    },
-	    canPrint: true
-	}));
-	*/
+	 * result.plugins.push(new OptimizeCssAssetsPlugin({ cssProcessor:
+	 * require('cssnano'), cssProcessorOptions: { safe: true, map: { inline:
+	 * false }, discardComments: { removeAll: true } }, canPrint: true }));
+	 */
 	
 	result.plugins.push(new PurifyCSSPlugin({
 		paths: glob.sync([
@@ -67,13 +65,9 @@ let config = (env) => {
 	}));
 
 	/*
-new SWPrecache({
-				minify: true,
-				filename: 'sw.js',
-				dontCacheBustUrlsMatching: /./,
-				navigateFallback: 'index.html',
-				staticFileGlobsIgnorePatterns: [/\.map$/]
-})
+	 * new SWPrecache({ minify: true, filename: 'sw.js',
+	 * dontCacheBustUrlsMatching: /./, navigateFallback: 'index.html',
+	 * staticFileGlobsIgnorePatterns: [/\.map$/] })
 	 */
 	
 	return result;
