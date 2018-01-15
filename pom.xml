@@ -130,6 +130,12 @@
 						</execution>
 						<execution>
 							<id>npm install</id>
+							<goals>
+								<goal>npm</goal>
+							</goals>
+							<configuration>
+								<arguments>install --no-optional</arguments>
+							</configuration>
 						</execution>
 						<execution>
 							<id>webpack build</id>
@@ -152,6 +158,12 @@
 						<id>install node and npm</id>
 						<goals>
 							<goal>install-node-and-npm</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -177,15 +189,6 @@
 						<groupId>com.github.eirslett</groupId>
 						<artifactId>frontend-maven-plugin</artifactId>
 						<executions>
-							<execution>
-								<id>npm install</id>
-								<goals>
-									<goal>npm</goal>
-								</goals>
-								<configuration>
-									<arguments>install --no-optional</arguments>
-								</configuration>
-							</execution>
 							<execution>
 								<id>webpack build</id>
 								<goals>
@@ -231,18 +234,6 @@
 						<groupId>com.github.eirslett</groupId>
 						<artifactId>frontend-maven-plugin</artifactId>
 						<executions>
-							<execution>
-								<id>npm install</id>
-								<goals>
-									<goal>npm</goal>
-								</goals>
-								<configuration>
-									<environmentVariables>
-										<NODE_ENV>production</NODE_ENV>
-									</environmentVariables>
-									<arguments>install --production --no-optional</arguments>
-								</configuration>
-							</execution>
 							<execution>
 								<id>webpack build</id>
 								<goals>
