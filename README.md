@@ -44,14 +44,15 @@ To build the project run
 ```sh
 mvn install
 ```
+for fully optimized output.
 
-for development build or
+For development using Eclipse simply import the project. Deploy the project to a server (WildFly, Tomcat). Aftwards you can 
 
 ```sh
-mvn install -P production,!eclipse
+cd src/main/frontend
+npm run start
 ```
-
-for fully optimized output.
+to run the webapp in a browser with activated hot module replacement.
 
 ### Todos
  - Client side caching
