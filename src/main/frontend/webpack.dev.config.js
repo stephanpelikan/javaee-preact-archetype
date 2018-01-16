@@ -3,28 +3,28 @@ const common = require('./webpack.common.config');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 let config = (env) => {
-	let result = common(env);
+	let config = common(env);
 	
-	result.devtool = '#eval'; // inline-source-map
+	config.devtool = '#eval'; // inline-source-map
 
-	result.entry.app = './main-dev.tsx';
+	config.entry.app = './main-dev.tsx';
 	
-	result.devServer = {
+	config.output.filename = 'public/[name].[hash].js';
+
+	config.devServer = {
 		contentBase: env.outputDirectory,
-		publicPath: result.output.publicPath,
+		publicPath: config.output.publicPath,
 		inline: true,
 		hotOnly: true
 	};
 	
-	result.plugins.push(new ExtractTextPlugin({
+	config.plugins.push(new ExtractTextPlugin({
 		disable: true
 	}));
 
-	result.plugins.push(new webpack.NamedModulesPlugin());
-
-	result.plugins.push(new webpack.HotModuleReplacementPlugin());
+	config.plugins.push(new webpack.HotModuleReplacementPlugin());
 	
-	return result;
+	return config;
 }
 
 module.exports = config;

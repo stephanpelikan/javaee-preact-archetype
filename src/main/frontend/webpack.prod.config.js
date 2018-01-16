@@ -8,20 +8,22 @@ const PurifyCSSPlugin = require('purifycss-webpack');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 let config = (env) => {
-	let result = common(env);
+	let config = common(env);
 
-	result.devtool = '#source-map';
+	config.devtool = '#source-map';
 	
-	result.entry.app = './main-prod.tsx';
+	config.entry.app = './main-prod.tsx';
+	
+	config.output.filename = 'public/[name].[chunkhash].js';
 
-	result.plugins.push(new CompressionPlugin({
+	config.plugins.push(new CompressionPlugin({
 	}));
 	
-	result.plugins.push(new webpack.LoaderOptionsPlugin({
+	config.plugins.push(new webpack.LoaderOptionsPlugin({
 		minimize: true
 	}));
 
-	result.plugins.push(new webpack.optimize.UglifyJsPlugin({
+	config.plugins.push(new webpack.optimize.UglifyJsPlugin({
 		sourceMap: true,
 		compress: {
 			unused: 1,
@@ -40,18 +42,18 @@ let config = (env) => {
 		}
 	}));
 	
-	result.plugins.push(new ExtractTextPlugin({
+	config.plugins.push(new ExtractTextPlugin({
 		filename: "[name].css",
 		allChunks: true
 	}));
 	
 	/*
-	 * result.plugins.push(new OptimizeCssAssetsPlugin({ cssProcessor:
+	 * config.plugins.push(new OptimizeCssAssetsPlugin({ cssProcessor:
 	 * require('cssnano'), cssProcessorOptions: { safe: true, map: { inline:
 	 * false }, discardComments: { removeAll: true } }, canPrint: true }));
 	 */
 	
-	result.plugins.push(new PurifyCSSPlugin({
+	config.plugins.push(new PurifyCSSPlugin({
 		paths: glob.sync([
 			  path.join(env.outputDirectory, '*.html'),
 			  path.join(env.outputDirectory, '**/*.js'),
@@ -70,7 +72,7 @@ let config = (env) => {
 	 * staticFileGlobsIgnorePatterns: [/\.map$/] })
 	 */
 	
-	return result;
+	return config;
 }
 
 module.exports = config;

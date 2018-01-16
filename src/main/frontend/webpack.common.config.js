@@ -3,19 +3,19 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AssetGraphPlugin = require('asset-graph-webpack-plugin');
+const IdentifierNormalModulesPlugin = require('./IdentifierNormalModulesPlugin');
 
 module.exports = (env) => {
 	return {
 		entry : {
-			commons: [
+			vendor: [
 				'preact'
 			]
 		},
 		output : {
 			publicPath : '/',
 			path: env.outputDirectory,
-			filename : 'public/[name]-[hash].bundle.js',
-			chunkFilename: 'public/[name]-[chunkhash].bundle.js',
+			chunkFilename: 'public/[name].[chunkhash].js',
 			sourceMapFilename: '[file].map'
 		},
 		plugins : [
@@ -26,9 +26,22 @@ module.exports = (env) => {
 					collapseWhitespace: true
 				}
 			}),
+			new webpack.NamedModulesPlugin(),
+			new webpack.NamedChunksPlugin((chunk) => {
+				if (chunk.name) {
+					return chunk.name;
+				}
+				let n = [];
+				chunk.forEachModule(m => n.push(path.relative(m.context, m.request)))
+				return n.join(' ');
+			}),
+			new IdentifierNormalModulesPlugin(),
 			new webpack.optimize.CommonsChunkPlugin({
-				name: 'commons',
-				filename: 'commons.js'
+				name: ['vendor'],
+				minChunks: Infinity
+			}),
+			new webpack.optimize.CommonsChunkPlugin({
+				name: ['runtime']
 			}),
 			// new AssetGraphPlugin(path.join(env.outputDirectory, 'assets.json'))
 		],

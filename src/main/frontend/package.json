@@ -33,7 +33,7 @@
 		"@types/webpack-env": "^1.13.0"
 	},
 	"scripts": {
-		"build": "webpack --env.outputDirectory=/tmp/htdocs --config webpack.dev.config.js --progress",
+		"build": "webpack --env.outputDirectory=/tmp/htdocs --config webpack.prod.config.js --progress",
 		"start": "webpack-dev-server --env.outputDirectory=/tmp/htdocs --config webpack.dev.config.js --progress --open",
 		"watch": "webpack --env.outputDirectory=/tmp/htdocs --config webpack.dev.config.js --progress --watch"
 	}
