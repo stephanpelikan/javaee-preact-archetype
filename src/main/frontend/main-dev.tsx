@@ -1,11 +1,10 @@
-import { h, render } from "preact";
-import 'preact/debug';  // support devtools
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-let root: Element;
-function init() {
+function init(): void {
 
     let Main: any = require('./main').default; // see https://github.com/webpack/webpack-dev-server/issues/100
-    root = render(<Main />, document.body, root);
+    ReactDOM.render(<Main />, document.getElementById('app'));
 
 }
 

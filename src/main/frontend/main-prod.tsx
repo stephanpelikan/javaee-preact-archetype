@@ -1,10 +1,10 @@
-import { h, render } from "preact";
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Main from './main';
 
-let root: Element;
 function init() {
 
-    root = render(<Main />, document.body, root);
+    ReactDOM.render(<Main />, document.getElementById('app'));
 
 }
 
