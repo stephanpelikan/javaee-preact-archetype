@@ -43,14 +43,16 @@ module.exports = (env) => {
 			new webpack.optimize.CommonsChunkPlugin({
 				name: ['runtime']
 			}),
-			// new AssetGraphPlugin(path.join(env.outputDirectory, 'assets.json'))
+			// new AssetGraphPlugin(path.join(env.outputDirectory,
+			// 'assets.json'))
 		],
 		resolve : {
 			alias: {
 				'react': 'preact-compat',
 				'react-dom': 'preact-compat',
 				// Not necessary unless you consume a module using `createClass`
-				'create-react-class': 'preact-compat/lib/create-react-class'
+				'create-react-class': 'preact-compat/lib/create-react-class',
+				'preact-compat': 'preact-compat/dist/preact-compat'
 			},
 			extensions : [ '.tsx', '.ts', '.js' ]
 		},
@@ -78,14 +80,16 @@ module.exports = (env) => {
 				})
 			}, {
 				test : /\.tsx$/,
-				loader : 'ts-loader',
-				exclude : /node_modules/,
-				options : {
-					configFile : "./tsconfig.json",
-					compilerOptions: {
-						outDir: env.outputDirectory
+				loaders : [{
+					loader: 'ts-loader', 
+					options : {
+						configFile : "./tsconfig.json",
+						compilerOptions: {
+							outDir: env.outputDirectory
+						}
 					}
-				}
+				}],
+				exclude: /node_modules/
 			} ]
 		}
 	}

@@ -7,7 +7,7 @@ let config = (env) => {
 	
 	config.devtool = '#eval'; // inline-source-map
 
-	config.entry.app = './main-dev.tsx';
+	config.entry.app = [ 'react-hot-loader/patch', './main-dev.tsx' ];
 	
 	config.output.filename = 'public/[name].[hash].js';
 
@@ -23,6 +23,9 @@ let config = (env) => {
 	}));
 
 	config.plugins.push(new webpack.HotModuleReplacementPlugin());
+	
+	config.module.loaders[1].loaders[1] = config.module.loaders[1].loaders[0];
+	config.module.loaders[1].loaders[0] = { loader: 'react-hot-loader/webpack' };
 	
 	return config;
 }

@@ -1,16 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+import Main from './main';
 
-function init(): void {
+function init(Component: any): void {
 
-    let Main: any = require('./main').default; // see https://github.com/webpack/webpack-dev-server/issues/100
-    ReactDOM.render(<Main />, document.getElementById('app'));
+    ReactDOM.render(<AppContainer><Component /></AppContainer>, document.getElementById('app'));
 
 }
 
-init();
+init(Main);
 
 // listen for HMR
 if ( module.hot ) {
-    module.hot.accept( './main', init );
+    module.hot.accept( './main', () => { init(Main) } );
 }
